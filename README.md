@@ -1,5 +1,5 @@
 # CATS_illustration_cross-classfied
- CATS case study illustration for "Multiple imputation approaches for handling incomplete three-level data with time-varying cluster-memberships"
+ CATS case study illustration accomanying paper "Multiple imputation approaches for handling incomplete three-level data with time-varying cluster-memberships"
  
 This repository contains an illustration of various multiple imputation approaches using simulated data mimicking the Childhood to adolescence Transition Study (CATS), as per the following paper:
 
