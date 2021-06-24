@@ -1,7 +1,8 @@
 ##################################################################################                                                                      #
-#  Simulation of Complete data                                                    #
-#  Rushani Wijesuriya 08th of December 2020                                       #
-#  MAR1-High-high                                                                 #
+#  CATS case study illustration                                                  #
+#  Simulation of Complete and missing data                                      #
+#  Rushani Wijesuriya 24th of June 2021                                         #
+#                                                                                #
 ##################################################################################
 
 rm(list=ls())
