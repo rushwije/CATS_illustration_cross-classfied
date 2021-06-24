@@ -301,11 +301,15 @@ D_wide$r_prevdep.4 <- as.numeric(runif(1200,0,1)< inv.logit(iota03+iota1*D_wide$
 1-(sum(D_wide$r_prevdep.4)/nrow(D_wide))
 
 #generate missing data in Teacher scores at waves 1,2,3,4 
-D_wide <- delete_MCAR(D_wide, 0.2, "t_score.W1")
-D_wide <- delete_MCAR(D_wide, 0.2, "t_rating.2")
-D_wide <- delete_MCAR(D_wide, 0.2, "t_rating.3")
-D_wide <- delete_MCAR(D_wide, 0.2, "t_rating.4")
+D_wide <- delete_MCAR(D_wide, 0.1, "t_score.W1")
+D_wide <- delete_MCAR(D_wide, 0.1, "t_rating.2")
+D_wide <- delete_MCAR(D_wide, 0.1, "t_rating.3")
+D_wide <- delete_MCAR(D_wide, 0.1, "t_rating.4")
 
+#generate missing data in prev_SDQ values at waves 2,3,4
+D_wide <- delete_MCAR(D_wide, 0.1, "prev_sdq.2")
+D_wide <- delete_MCAR(D_wide, 0.3, "prev_sdq.3")
+D_wide <- delete_MCAR(D_wide, 0.3, "prev_sdq.4")
 
 
 D_wide <- D_wide %>% select(!c("t_rating.1","prev_sdq.1","prev_dep.1"))
