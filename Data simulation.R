@@ -15,7 +15,7 @@ library(DataCombine) #for the slide function
 library(missMethods)
 
 #set seed
-set.seed(3682500)
+set.seed(67421)
 
 #set working directory (to where the script if saved)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -309,8 +309,8 @@ D_wide <- delete_MCAR(D_wide, 0.1, "t_rating.4")
 
 #generate missing data in prev_SDQ values at waves 2,3,4
 D_wide <- delete_MCAR(D_wide, 0.1, "prev_sdq.2")
-D_wide <- delete_MCAR(D_wide, 0.3, "prev_sdq.3")
-D_wide <- delete_MCAR(D_wide, 0.3, "prev_sdq.4")
+D_wide <- delete_MCAR(D_wide, 0.1, "prev_sdq.3")
+D_wide <- delete_MCAR(D_wide, 0.1, "prev_sdq.4")
 
 
 D_wide <- D_wide %>% select(!c("t_rating.1","prev_sdq.1","prev_dep.1"))
@@ -331,5 +331,12 @@ D_long$prev_dep <- ifelse(D_long$r_prevdep==0,NA,D_long$prev_dep)
 
 
 D_long$r_prevdep=NULL
+
+#Rename variables
+D_long <- D_long %>% dplyr::rename( t_score = t_rating,c1dage=c_age,tscore_W1=t_score.W1,
+                                    cdgender=c_sex,SES=c_ses, uniqueid=c_id,school_clus=school,
+                                    school_clus.W1=school.W1
+)
+
 #Export data
 write.csv(D_long,paste0("CATS_dataL.csv"),row.names = F)
