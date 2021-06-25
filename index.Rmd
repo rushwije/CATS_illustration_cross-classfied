@@ -1,10 +1,10 @@
 ---
-title: "CATS case study illustration: MI approaches for incomplete three-level data with time-varying cluster-memberships"
+title: "MI approaches for incomplete three-level data with time-varying cluster-memberships"
 author: "Rushani Wijesuriya"
 date:  June 24, 2021
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{CATS case study illustration: MI approaches for incomplete three-level data with time-varying cluster-memberships}
+  %\VignetteIndexEntry{MI approaches for incomplete three-level data with time-varying cluster-memberships}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
