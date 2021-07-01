@@ -74,7 +74,7 @@ lmer(t_score~ prev_dep+time+c1dage+tscore_W1+cdgender+SES+
 
 ### 2. First-cluster approach using single-level JM with DI for schools with repeated measures analysed in wide format (JM-1L-DI-wide_f)
 
-The  data used in (1) above was in long format, with one row per individual per wave. For ***JM-1L-DI-wide***, we need to first reshape the data which into wide format with one row per individual. This can be done using the reshape function
+The  data used in (1) above were in long format, with one row per individual per wave. For ***JM-1L-DI-wide***, we need to first reshape the data into wide format with one row per individual. This can be done using the reshape function
 
 ```{r reshape}
   CATS_dataw <- reshape(CATS_dataL,v.names=c("school_clus","t_score","prev_sdq","prev_dep"),timevar = "time",idvar="uniqueid",direction= "wide")
@@ -161,7 +161,7 @@ testEstimates(mods,var.comp=T)
 
 ### 3. First-cluster approach using single-level FCS with DI for schools with repeated measures analysed in wide format (FCS-1L-DI-wide_f)
 
-Similar to the ***JM-1L-DI-wide_f*** approach, here the dataset will need to be in wide format during the imputation process. To carry out single-level FCS, R package `mice` can be used. As all incomplete variables are continuous, the method used is `norm`. More details on methods within `mice` for different types of variables can be found [here](https://stefvanbuuren.name/fimd/). Here each of the incomplete variable will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors.  
+Similar to the ***JM-1L-DI-wide_f*** approach, here the dataset will need to be in wide format during the imputation process. To carry out single-level FCS, R package `mice` can be used. As all incomplete variables are continuous, the method used is `norm`. More details on methods within `mice` for different types of variables can be found [here](https://stefvanbuuren.name/fimd/). Here each of the incomplete variables will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors.  
 
 ```{r FCS1LDIWIDE_f}
 
@@ -227,7 +227,7 @@ testEstimates(mods,var.comp=T)
 
 The syntax file for conducting imputations under this approach can be found [here](https://github.com/rushwije/MI3level_cross-classfied). 
 
-**Note**: Prior to importing data to the Blimp-studio software, recode all missing values (for example as 999) and categorical variables as numerical variables. This is because special characters in the data such as NA values and string values can cause the data import to fail. The user guide, examples and the new version releases for the Blimp-studio software can be found [here](http://www.appliedmissingdata.com/multilevel-imputation.html).
+**Note**: Prior to importing data to the Blimp-studio software, recode all missing values (for example as 999) and categorical variables as numerical variables. This is because special characters in the data, such as NA values and string values can cause the data import to fail. The user guide, examples and the new version releases for the Blimp-studio software can be found [here](http://www.appliedmissingdata.com/multilevel-imputation.html).
 
 The multiple imputed datasets will be saved in a single file in a stacked format.The substantive model then needs to be fitted to each imputed dataset and results pooled across the datasets. 
 
@@ -308,11 +308,11 @@ Post-imputation, the imputed datasets will need to be reshaped into long format 
 
 ### 7. Common-cluster approach using three-level FCS approach in Blimp  (FCS-3L-Blimp_c)
 
-For the syntax file see [here](https://github.com/rushwije/MI3level_cross-classfied).
+For the Blimp syntax file see [here](https://github.com/rushwije/MI3level_cross-classfied).
 
 ### 8. Single-level FCS with DI indicators for the higher-level clusters and repeated measures imputed in wide format (FCS-1L-DI-wide) 
 
-Under this approah, each of the incomplete variables will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors. In each of the univariate imputation models specified for each incomplete repeated measure a set of DIs for the school cluster membership at that particular wave will be included. This is achieved using the predictor matrix as shown below. 
+Under this approah, each of the incomplete variables will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors. In each of the univariate imputation models specified for each incomplete repeated measure, a set of DIs for the school cluster membership at that particular wave will be included. This is achieved using the predictor matrix as shown below. 
 
 ```{r SLFCSDIWIDE}
 
@@ -351,7 +351,7 @@ Post-imputation, the imputed datasets will need to be reshaped into long format 
 
 ### 9. Two-level FCS for the higher-level clusters with repeated measures imputed in wide format (FCS-2L-wide) 
 
-Underthis approach, the data will be in wide format during the imputation stage. Two-level univariate linear imputation  models are specified for each incomplete variable. To specify the imputation models, the method `2l.pan` in the R package `mice` can be used. Here for each univariate imputation model as before an  predictor variables to be used will need to be specified. In addition, in each model, the school cluster membership will too need to be included as the cluster/group variable. This cam be done by using the integer value (-2) in the predictor matrix specification, indicating the cluster variable is to be modelled via random effects.
+Under this approach, the data will be in wide format during the imputation stage. Two-level univariate linear imputation  models are specified for each incomplete variable. To specify the imputation models, the method `2l.pan` in the R package `mice` can be used. Here for each univariate imputation model as before a predictor variables to be used will need to be specified. In addition, in each model, the school cluster membership will too need to be included as the cluster/group variable. This can be done by using the integer value (-2) in the predictor matrix specification, indicating the cluster variable is to be modelled via random effects.
 
 ```{r FCS2LDIWIDE}
 
@@ -396,7 +396,7 @@ Post-imputation, the imputed datasets will need to be reshaped into long format 
 ### 10. Two-level JM for repeated measures with DI for higher-level clusters (JM-2L-DI)
 
 Under this approach, the data can be imputed in long format because the clustering between repeated measures of the same variable is now modelled using the two-level joint imputation model in `jomo`. 
-The incomplete variables will be specified as outcomes(Y) in the two level imputation model, while all complete variables will serve as the predictors(X) as before. However, here we also have to define incomplete level-2 variables as well.As before to include fully observed categorical covariates with three or more categories in the predictor matrix of the imputation model, appropriate dummy variables have to be created. An additional data frame (Z) will also need to be created for the random intercepts for each individual and the cluster indicator, individual’s uniqueid, will need to be specified in the imputation model as shown below. 
+The incomplete variables will be specified as outcomes(Y) in the two level imputation model, while all complete variables will serve as the predictors(X) as before. However, here we also have to define incomplete level-2 variables as well.As before, to include fully observed categorical covariates with three or more categories in the predictor matrix of the imputation model, appropriate dummy variables have to be created. An additional data frame (Z) will also need to be created for the random intercepts for each individual and the cluster indicator (i.e. individual’s unique id in this example) will need to be specified in the imputation model as shown below. 
 
 ```{r JM2LDI,results="hide"}
 ##Set number of imputations 
@@ -435,7 +435,7 @@ imp7<-jomo(Y=dataimp1,Y2=dataimp2,X=datacomp_dummy,X2=datacomp2,Z=datLcompRE,clu
 
 ```
 
-Post-imputation, no reshape is required as the data was imputed in long format. However, the original school cluster variable will be need to be reattached as it was replaced by dummy inidcators in the imputation stage. 
+Post-imputation, no reshape is required as the data were imputed in long format. However, the original school cluster variable will be need to be reattached as it was replaced by dummy indicators in the imputation stage. 
 
 ```{r }
 mylist=list()
@@ -467,7 +467,7 @@ testEstimates(mods, var.comp=TRUE)
 
 ### 11. Two-level FCS for repeated measures with DI for higher-level clusters (FCS-2L-DI)
 
-Similar to ***JM-2L-DI*** here the repeated measures will be imputed in long format, with the clustering between repeated measures of the same variable modelled using a univariate two-level imputation model. The imputation models can be specified using the R package `mice’. 
+Similar to ***JM-2L-DI*** here the repeated measures will be imputed in long format, with the clustering between repeated measures of the same variable modelled using a two-level imputation model. The imputation models can be specified using the R package `mice’. 
 
 For each univariate imputation model, an imputation method and the predictor variables to be used will need to be specified as shown below. When specifying the predictor matrix, specify the id variable `uniquieid` as the group variable (-2) , remove school cluster membership at wave 1 from the predicor set for all variables and finally, remove the time-varying school cluster membership from the imputation model of the time-fixed baseline variable `tscore_W1`. The latter is because the imputation method used for imputing level-2 variable, `2lonly.norm`, averages all level 1 predictor to impute the level -2 variable by using a linear model. Aggregrating school cluster inidcators this way is not practical and it results in implausible imputed values. 
 
@@ -507,7 +507,7 @@ imp8<-mice(CATS_dataL,m=M, maxit=1,predictorMatrix=pred, method=meth)
 
 ```
 
-Post-imputation, no reshape is required as the data was imputed in long format and the anlysis can be carried out on the imputed data. 
+Post-imputation, no reshape is required as the data were imputed in long format and the anlysis can be carried out on the imputed data. 
 
 ```{r }
 mylist=list()
@@ -581,6 +581,6 @@ imp <- mice(CATS_dataL, method = impMethod, predictorMatrix = predMatrix, maxit 
             aggregate_automatically = FALSE)
 
 ```
-Post-imputation, no reshape is required as the data was imputed in long format and the anlysis can be carried out on the imputed data. 
+Post-imputation, no reshape is required as the data were imputed in long format and the anlysis can be carried out on the imputed data. 
 
 
