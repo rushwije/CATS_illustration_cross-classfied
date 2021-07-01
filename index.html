@@ -449,7 +449,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="first-cluster-approach-using-single-level-jm-with-di-for-schools-with-repeated-measures-analysed-in-wide-format-jm-1l-di-wide_f" class="section level3">
 <h3>2. First-cluster approach using single-level JM with DI for schools with repeated measures analysed in wide format (JM-1L-DI-wide_f)</h3>
-<p>The data used in (1) above was in long format, with one row per individual per wave. For <strong><em>JM-1L-DI-wide</em></strong>, we need to first reshape the data which into wide format with one row per individual. This can be done using the reshape function</p>
+<p>The data used in (1) above were in long format, with one row per individual per wave. For <strong><em>JM-1L-DI-wide</em></strong>, we need to first reshape the data into wide format with one row per individual. This can be done using the reshape function</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">  CATS_dataw &lt;-<span class="st"> </span><span class="kw">reshape</span>(CATS_dataL,<span class="dt">v.names=</span><span class="kw">c</span>(<span class="st">&quot;school_clus&quot;</span>,<span class="st">&quot;t_score&quot;</span>,<span class="st">&quot;prev_sdq&quot;</span>,<span class="st">&quot;prev_dep&quot;</span>),<span class="dt">timevar =</span> <span class="st">&quot;time&quot;</span>,<span class="dt">idvar=</span><span class="st">&quot;uniqueid&quot;</span>,<span class="dt">direction=</span> <span class="st">&quot;wide&quot;</span>)</a></code></pre></div>
 <p>In order to guarantee that the correct function is being used by <code>jomo</code>, make sure that continuous variables are stored as numeric vectors in the data frame and binary/categorical variables as factors. To include fully observed categorical covariates with three or more categories in the predictor matrix (X) of the imputation model, appropriate dummy variables will have to be created.</p>
 <p>Under this approach, the incomplete variables will need to be specified as the outcomes(Y) in the single level imputation model, while all complete variables will serve as the predictors(X). The imputation model can be specified as follows:</p>
@@ -539,7 +539,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="first-cluster-approach-using-single-level-fcs-with-di-for-schools-with-repeated-measures-analysed-in-wide-format-fcs-1l-di-wide_f" class="section level3">
 <h3>3. First-cluster approach using single-level FCS with DI for schools with repeated measures analysed in wide format (FCS-1L-DI-wide_f)</h3>
-<p>Similar to the <strong><em>JM-1L-DI-wide_f</em></strong> approach, here the dataset will need to be in wide format during the imputation process. To carry out single-level FCS, R package <code>mice</code> can be used. As all incomplete variables are continuous, the method used is <code>norm</code>. More details on methods within <code>mice</code> for different types of variables can be found <a href="https://stefvanbuuren.name/fimd/">here</a>. Here each of the incomplete variable will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors.</p>
+<p>Similar to the <strong><em>JM-1L-DI-wide_f</em></strong> approach, here the dataset will need to be in wide format during the imputation process. To carry out single-level FCS, R package <code>mice</code> can be used. As all incomplete variables are continuous, the method used is <code>norm</code>. More details on methods within <code>mice</code> for different types of variables can be found <a href="https://stefvanbuuren.name/fimd/">here</a>. Here each of the incomplete variables will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"></a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="co">##Set the number of imputations </span></a>
 <a class="sourceLine" id="cb8-3" title="3">M&lt;-<span class="dv">3</span>     <span class="co">#set to 3 to reduce the time of demo, 20 more appropriate</span></a>
@@ -619,7 +619,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="first-cluster-approach-using-three-level-fcs-approach-in-blimp-fcs-3l-blimp_f" class="section level3">
 <h3>4. First-cluster approach using three-level FCS approach in Blimp (FCS-3L-Blimp_f)</h3>
 <p>The syntax file for conducting imputations under this approach can be found <a href="https://github.com/rushwije/MI3level_cross-classfied">here</a>.</p>
-<p><strong>Note</strong>: Prior to importing data to the Blimp-studio software, recode all missing values (for example as 999) and categorical variables as numerical variables. This is because special characters in the data such as NA values and string values can cause the data import to fail. The user guide, examples and the new version releases for the Blimp-studio software can be found <a href="http://www.appliedmissingdata.com/multilevel-imputation.html">here</a>.</p>
+<p><strong>Note</strong>: Prior to importing data to the Blimp-studio software, recode all missing values (for example as 999) and categorical variables as numerical variables. This is because special characters in the data, such as NA values and string values can cause the data import to fail. The user guide, examples and the new version releases for the Blimp-studio software can be found <a href="http://www.appliedmissingdata.com/multilevel-imputation.html">here</a>.</p>
 <p>The multiple imputed datasets will be saved in a single file in a stacked format.The substantive model then needs to be fitted to each imputed dataset and results pooled across the datasets.</p>
 </div>
 <div id="common-cluster-approach-using-single-level-jm-with-di-for-schools-with-repeated-measures-analysed-in-wide-format-jm-1l-di-wide_c" class="section level3">
@@ -695,11 +695,11 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="common-cluster-approach-using-three-level-fcs-approach-in-blimp-fcs-3l-blimp_c" class="section level3">
 <h3>7. Common-cluster approach using three-level FCS approach in Blimp (FCS-3L-Blimp_c)</h3>
-<p>For the syntax file see <a href="https://github.com/rushwije/MI3level_cross-classfied">here</a>.</p>
+<p>For the Blimp syntax file see <a href="https://github.com/rushwije/MI3level_cross-classfied">here</a>.</p>
 </div>
 <div id="single-level-fcs-with-di-indicators-for-the-higher-level-clusters-and-repeated-measures-imputed-in-wide-format-fcs-1l-di-wide" class="section level3">
 <h3>8. Single-level FCS with DI indicators for the higher-level clusters and repeated measures imputed in wide format (FCS-1L-DI-wide)</h3>
-<p>Under this approah, each of the incomplete variables will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors. In each of the univariate imputation models specified for each incomplete repeated measure a set of DIs for the school cluster membership at that particular wave will be included. This is achieved using the predictor matrix as shown below.</p>
+<p>Under this approah, each of the incomplete variables will be imputed by using a series of univariate imputation models with the incomplete variable as the outcome and all the other variables as the predictors. In each of the univariate imputation models specified for each incomplete repeated measure, a set of DIs for the school cluster membership at that particular wave will be included. This is achieved using the predictor matrix as shown below.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"></a>
 <a class="sourceLine" id="cb13-2" title="2">CATS_dataFCSv &lt;-<span class="st"> </span>CATS_dataw</a>
 <a class="sourceLine" id="cb13-3" title="3"></a>
@@ -739,7 +739,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="two-level-fcs-for-the-higher-level-clusters-with-repeated-measures-imputed-in-wide-format-fcs-2l-wide" class="section level3">
 <h3>9. Two-level FCS for the higher-level clusters with repeated measures imputed in wide format (FCS-2L-wide)</h3>
-<p>Underthis approach, the data will be in wide format during the imputation stage. Two-level univariate linear imputation models are specified for each incomplete variable. To specify the imputation models, the method <code>2l.pan</code> in the R package <code>mice</code> can be used. Here for each univariate imputation model as before an predictor variables to be used will need to be specified. In addition, in each model, the school cluster membership will too need to be included as the cluster/group variable. This cam be done by using the integer value (-2) in the predictor matrix specification, indicating the cluster variable is to be modelled via random effects.</p>
+<p>Under this approach, the data will be in wide format during the imputation stage. Two-level univariate linear imputation models are specified for each incomplete variable. To specify the imputation models, the method <code>2l.pan</code> in the R package <code>mice</code> can be used. Here for each univariate imputation model as before a predictor variables to be used will need to be specified. In addition, in each model, the school cluster membership will too need to be included as the cluster/group variable. This can be done by using the integer value (-2) in the predictor matrix specification, indicating the cluster variable is to be modelled via random effects.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"></a>
 <a class="sourceLine" id="cb14-2" title="2"><span class="co">##set the number of imputations</span></a>
 <a class="sourceLine" id="cb14-3" title="3">M=<span class="dv">3</span>   <span class="co">#set to 3 to reduce the time of demo, 20 more appropriate</span></a>
@@ -783,7 +783,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="two-level-jm-for-repeated-measures-with-di-for-higher-level-clusters-jm-2l-di" class="section level3">
 <h3>10. Two-level JM for repeated measures with DI for higher-level clusters (JM-2L-DI)</h3>
-<p>Under this approach, the data can be imputed in long format because the clustering between repeated measures of the same variable is now modelled using the two-level joint imputation model in <code>jomo</code>. The incomplete variables will be specified as outcomes(Y) in the two level imputation model, while all complete variables will serve as the predictors(X) as before. However, here we also have to define incomplete level-2 variables as well.As before to include fully observed categorical covariates with three or more categories in the predictor matrix of the imputation model, appropriate dummy variables have to be created. An additional data frame (Z) will also need to be created for the random intercepts for each individual and the cluster indicator, individual’s uniqueid, will need to be specified in the imputation model as shown below.</p>
+<p>Under this approach, the data can be imputed in long format because the clustering between repeated measures of the same variable is now modelled using the two-level joint imputation model in <code>jomo</code>. The incomplete variables will be specified as outcomes(Y) in the two level imputation model, while all complete variables will serve as the predictors(X) as before. However, here we also have to define incomplete level-2 variables as well.As before, to include fully observed categorical covariates with three or more categories in the predictor matrix of the imputation model, appropriate dummy variables have to be created. An additional data frame (Z) will also need to be created for the random intercepts for each individual and the cluster indicator (i.e. individual’s unique id in this example) will need to be specified in the imputation model as shown below.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co">##Set number of imputations </span></a>
 <a class="sourceLine" id="cb15-2" title="2">M=<span class="dv">3</span>     <span class="co">#set to 3 to reduce the time of demo, set to 20 </span></a>
 <a class="sourceLine" id="cb15-3" title="3">nburn=<span class="dv">1</span> <span class="co">#set to 1 to reduce the time of demo, set to 1000 </span></a>
@@ -817,7 +817,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb15-31" title="31"><span class="co">##Perform imputations with the random effects (2L imputation)</span></a>
 <a class="sourceLine" id="cb15-32" title="32">imp7&lt;-<span class="kw">jomo</span>(<span class="dt">Y=</span>dataimp1,<span class="dt">Y2=</span>dataimp2,<span class="dt">X=</span>datacomp_dummy,<span class="dt">X2=</span>datacomp2,<span class="dt">Z=</span>datLcompRE,<span class="dt">clus=</span>CATS_dataL<span class="op">$</span>uniqueid,<span class="dt">nimp=</span>M,<span class="dt">nburn=</span>nburn,<span class="dt">nbetween=</span>NB)</a>
 <a class="sourceLine" id="cb15-33" title="33"><span class="co">#output not shown  to reduce length of vignette</span></a></code></pre></div>
-<p>Post-imputation, no reshape is required as the data was imputed in long format. However, the original school cluster variable will be need to be reattached as it was replaced by dummy inidcators in the imputation stage.</p>
+<p>Post-imputation, no reshape is required as the data were imputed in long format. However, the original school cluster variable will be need to be reattached as it was replaced by dummy indicators in the imputation stage.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">mylist=<span class="kw">list</span>()</a>
 <a class="sourceLine" id="cb16-2" title="2"></a>
 <a class="sourceLine" id="cb16-3" title="3"><span class="cf">for</span>(m <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>M)</a>
@@ -866,7 +866,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="two-level-fcs-for-repeated-measures-with-di-for-higher-level-clusters-fcs-2l-di" class="section level3">
 <h3>11. Two-level FCS for repeated measures with DI for higher-level clusters (FCS-2L-DI)</h3>
-<p>Similar to <strong><em>JM-2L-DI</em></strong> here the repeated measures will be imputed in long format, with the clustering between repeated measures of the same variable modelled using a univariate two-level imputation model. The imputation models can be specified using the R package `mice’.</p>
+<p>Similar to <strong><em>JM-2L-DI</em></strong> here the repeated measures will be imputed in long format, with the clustering between repeated measures of the same variable modelled using a two-level imputation model. The imputation models can be specified using the R package `mice’.</p>
 <p>For each univariate imputation model, an imputation method and the predictor variables to be used will need to be specified as shown below. When specifying the predictor matrix, specify the id variable <code>uniquieid</code> as the group variable (-2) , remove school cluster membership at wave 1 from the predicor set for all variables and finally, remove the time-varying school cluster membership from the imputation model of the time-fixed baseline variable <code>tscore_W1</code>. The latter is because the imputation method used for imputing level-2 variable, <code>2lonly.norm</code>, averages all level 1 predictor to impute the level -2 variable by using a linear model. Aggregrating school cluster inidcators this way is not practical and it results in implausible imputed values.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"></a>
 <a class="sourceLine" id="cb17-2" title="2"><span class="co"># Recode the cluster variable from factor to integer</span></a>
@@ -906,7 +906,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb17-36" title="36"><span class="co">#&gt;   1   2  tscore_W1  prev_dep  t_score  prev_sdq</span></a>
 <a class="sourceLine" id="cb17-37" title="37"><span class="co">#&gt;   1   3  tscore_W1  prev_dep  t_score  prev_sdq</span></a>
 <a class="sourceLine" id="cb17-38" title="38"><span class="co">#&gt; Warning: Number of logged events: 12</span></a></code></pre></div>
-<p>Post-imputation, no reshape is required as the data was imputed in long format and the anlysis can be carried out on the imputed data.</p>
+<p>Post-imputation, no reshape is required as the data were imputed in long format and the anlysis can be carried out on the imputed data.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">mylist=<span class="kw">list</span>()</a>
 <a class="sourceLine" id="cb18-2" title="2"></a>
 <a class="sourceLine" id="cb18-3" title="3"><span class="cf">for</span>(m <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>M)</a>
@@ -985,7 +985,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb22-6" title="6"><span class="co">#&gt;   1   1  tscore_W1  prev_dep  t_score  prev_sdq</span></a>
 <a class="sourceLine" id="cb22-7" title="7"><span class="co">#&gt;   1   2  tscore_W1  prev_dep  t_score  prev_sdq</span></a>
 <a class="sourceLine" id="cb22-8" title="8"><span class="co">#&gt;   1   3  tscore_W1  prev_dep  t_score  prev_sdq</span></a></code></pre></div>
-<p>Post-imputation, no reshape is required as the data was imputed in long format and the anlysis can be carried out on the imputed data.</p>
+<p>Post-imputation, no reshape is required as the data were imputed in long format and the anlysis can be carried out on the imputed data.</p>
 </div>
 </div>
 
