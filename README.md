@@ -5,5 +5,5 @@ This repository contains an illustration of various multiple imputation approach
 
 Wijesuriya R., Moreno-Betancur M., Carlin J., De Silva A., and Lee K.: "Multiple imputation approaches for handling incomplete three-level data with time-varying cluster-memberships". 
 
-Click [here](https://3levelcrossclassified.netlify.app/) to access the vignette illustrating these approaches.
+Click [here](https://threelevelmicross-classified.netlify.app/) to access the vignette illustrating these approaches.
  
